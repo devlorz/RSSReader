@@ -1,19 +1,24 @@
 package com.leeway.rssreader.ui.main;
 
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.leeway.rssreader.R;
 import com.leeway.rssreader.base.BaseActivity;
 
-public class MainActivity extends BaseActivity implements
-MainContract.View, View.OnClickListener{
+import javax.inject.Inject;
 
-    private TextView mTextView;
-    private MainPresenter mPresenter;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class MainActivity extends BaseActivity<MainContract.Presenter> implements
+        MainContract.View {
+
+
+    @BindView(R.id.tvHello)
+    TextView mTextView;
 
     @Override
     protected int getContentResource() {
@@ -22,26 +27,34 @@ MainContract.View, View.OnClickListener{
 
     @Override
     protected void init(@Nullable Bundle state) {
-        mTextView = (TextView) findViewById(R.id.tvHello);
-        mTextView.setOnClickListener(this);
-        mPresenter = new MainPresenter();
-        mPresenter.attach(this);
-        mPresenter.loadHelloText();
+        getPresenter().loadHelloText();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mPresenter.detach();
-    }
-
-    @Override
-    public void onClick(View view) {
-        mPresenter.loadHelloText();
+    protected void injectDependencies() {
+        getActivityComponent().inject(this);
     }
 
     @Override
     public void onTextLoaded(String text) {
         mTextView.setText(text);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getPresenter().detach();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.tvHello)
+    public void onClick() {
+        getPresenter().loadHelloText();
     }
 }

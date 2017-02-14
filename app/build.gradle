@@ -47,5 +47,16 @@ dependencies {
     // LeakCanary
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
 
+    // AboutLibraries
+    compile('com.mikepenz:aboutlibraries:5.9.1@aar') {
+        transitive = true
+    }
+
+    // Test dependencies
     testCompile 'junit:junit:4.12'
+
+    // Instrumentation test dependencies
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }

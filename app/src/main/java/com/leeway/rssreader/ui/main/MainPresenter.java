@@ -11,13 +11,9 @@ import java.util.Random;
 public class MainPresenter extends BasePresenter<MainContract.View>
         implements MainContract.Presenter {
 
-    private String[] helloText = {"BONJOUR", "HOLA", "HALLO"
-            , "MERHABA", "HELLO", "CIAO", "KONNICHIWA"};
 
     @Override
-    public void loadHelloText() {
-        Random random = new Random();
-        String hello = helloText[random.nextInt(helloText.length)];
-        mView.onTextLoaded(hello);
+    public void loadRssFragments() {
+        getView().onLoadRssFragments();
     }
 }

@@ -1,14 +1,13 @@
 package com.leeway.rssreader.base;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.leeway.rssreader.di.ActivityComponent;
-import com.leeway.rssreader.di.ActivityModule;
-import com.leeway.rssreader.di.DaggerActivityComponent;
+import com.leeway.rssreader.di.component.ActivityComponent;
+import com.leeway.rssreader.di.component.DaggerActivityComponent;
+import com.leeway.rssreader.di.module.ActivityModule;
 
 import javax.inject.Inject;
 

@@ -2,7 +2,9 @@ package com.leeway.rssreader.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.TextView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 
 import com.leeway.rssreader.R;
 import com.leeway.rssreader.base.BaseActivity;
@@ -12,17 +14,19 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<MainContract.Presenter> implements
         MainContract.View {
 
 
-    @BindView(R.id.tvHello)
-    TextView mTextView;
-
     @Inject
     ChromeTabsWrapper mChromeTabsWrapper;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.tablayout)
+    TabLayout mTablayout;
+    @BindView(R.id.viewPager)
+    ViewPager mViewPager;
 
     @Override
     protected int getContentResource() {
@@ -31,7 +35,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     @Override
     protected void init(@Nullable Bundle state) {
-        getPresenter().loadHelloText();
+        getPresenter().loadRssFragments();
     }
 
     @Override
@@ -40,13 +44,12 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     }
 
     @Override
-    public void onTextLoaded(String text) {
-        mTextView.setText(text);
+    public void onLoadRssFragments() {
+        setUpViewPager();
     }
 
-    @OnClick(R.id.tvHello)
-    public void onClick() {
-        getPresenter().loadHelloText();
+    private void setUpViewPager() {
+        //List<>
     }
 
     @Override
@@ -60,4 +63,5 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         super.onDestroy();
         mChromeTabsWrapper.unbindCustomTabsService();
     }
+
 }

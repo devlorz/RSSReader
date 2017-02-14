@@ -1,4 +1,4 @@
-package com.leeway.rssreader.di;
+package com.leeway.rssreader.di.module;
 
 import android.content.Context;
 

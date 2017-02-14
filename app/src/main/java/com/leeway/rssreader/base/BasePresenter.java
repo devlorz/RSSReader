@@ -10,7 +10,7 @@ public class BasePresenter<V extends BaseView> implements BaseMvpPresenter<V> {
      *
      * @param view
      */
-    protected V mView;
+    V mView;
 
     @Override
     public void attach(V view) {

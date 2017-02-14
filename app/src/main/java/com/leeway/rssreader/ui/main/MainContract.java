@@ -11,11 +11,11 @@ public interface MainContract {
 
     // User actions. Presenter will implement
     interface Presenter extends BaseMvpPresenter<MainContract.View> {
-        void loadHelloText();
+        void loadRssFragments();
     }
 
     // Action callbacks. Activity/Fragment will implement
     interface View extends BaseView {
-        void onTextLoaded(String text);
+        void onLoadRssFragments();
     }
 }

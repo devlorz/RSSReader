@@ -35,5 +35,17 @@ dependencies {
     compile 'com.google.dagger:dagger-compiler:2.0'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
+    // Gson
+    compile 'com.google.code.gson:gson:2.8.0'
+
+    // Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    // Chrome custom tab
+    compile 'com.android.support:customtabs:25.1.0'
+
+    // LeakCanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+
     testCompile 'junit:junit:4.12'
 }

@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.leeway.rssreader.R;
 import com.leeway.rssreader.base.BaseActivity;
+import com.leeway.rssreader.chrome.ChromeTabsWrapper;
 
 import javax.inject.Inject;
 
@@ -19,6 +20,9 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     @BindView(R.id.tvHello)
     TextView mTextView;
+
+    @Inject
+    ChromeTabsWrapper mChromeTabsWrapper;
 
     @Override
     protected int getContentResource() {
@@ -40,21 +44,20 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         mTextView.setText(text);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        getPresenter().detach();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
     @OnClick(R.id.tvHello)
     public void onClick() {
         getPresenter().loadHelloText();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mChromeTabsWrapper.bindCustomTabsService();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mChromeTabsWrapper.unbindCustomTabsService();
     }
 }

@@ -3,6 +3,7 @@ package com.leeway.rssreader.di;
 import android.content.Context;
 
 import com.leeway.rssreader.base.BasePresenter;
+import com.leeway.rssreader.chrome.ChromeTabsWrapper;
 import com.leeway.rssreader.ui.main.MainContract;
 import com.leeway.rssreader.ui.main.MainPresenter;
 
@@ -22,6 +23,12 @@ public class ActivityModule {
 
     public ActivityModule(Context context) {
         mContext = context;
+    }
+
+    @Provides
+    @Singleton
+    ChromeTabsWrapper providesChromeTabsWrapper() {
+        return new ChromeTabsWrapper(mContext);
     }
 
     @Provides

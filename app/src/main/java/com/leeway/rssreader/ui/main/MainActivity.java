@@ -18,7 +18,6 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity<MainContract.Presenter> implements
         MainContract.View {
 
-
     @Inject
     ChromeTabsWrapper mChromeTabsWrapper;
     @BindView(R.id.toolbar)

@@ -1,6 +1,7 @@
 package com.leeway.rssreader.di.component;
 
 import com.leeway.rssreader.di.module.FragmentModule;
+import com.leeway.rssreader.ui.rss.RssFragment;
 
 import dagger.Component;
 
@@ -10,5 +11,5 @@ import dagger.Component;
 
 @Component(modules = FragmentModule.class)
 public interface FragmentComponent {
-    //void inject(RssFragm)
+    void inject(RssFragment obj);
 }

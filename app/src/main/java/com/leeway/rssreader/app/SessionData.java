@@ -5,12 +5,15 @@ import com.leeway.rssreader.model.RssItem;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by Lee Lorz on 2/15/2017.
  */
 
 public class SessionData {
 
+    @Inject
     public SessionData() {
     }
 

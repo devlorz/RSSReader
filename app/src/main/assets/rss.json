@@ -1,0 +1,22 @@
+[
+  {
+    "i": 10001,
+    "n": "Blognone",
+    "l": "https://www.blognone.com/node/feed"
+  },
+  {
+    "i": 1002,
+    "n": "Droidsans",
+    "l": "http://droidsans.com/rss.xml"
+  },
+  {
+    "i": 1003,
+    "n": "Mashable",
+    "l": "http://feeds.mashable.com/Mashable"
+  },
+  {
+    "i": 1004,
+    "n": "Thenextweb",
+    "l": "http://feeds2.feedburner.com/thenextweb"
+  }
+]

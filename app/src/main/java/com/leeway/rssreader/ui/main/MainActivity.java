@@ -26,14 +26,18 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity<MainContract.Presenter> implements
         MainContract.View , RssFragment.OnItemSelectListener{
 
-    @Inject
-    ChromeTabsWrapper mChromeTabsWrapper;
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
-    @BindView(R.id.tablayout)
-    TabLayout mTablayout;
     @BindView(R.id.viewPager)
     ViewPager mViewPager;
+
+    @BindView(R.id.tablayout)
+    TabLayout mTabLayout;
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+
+    @Inject
+    ChromeTabsWrapper mChromeTabsWrapper;
+
 
     @Override
     protected int getContentResource() {
@@ -42,6 +46,9 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     @Override
     protected void init(@Nullable Bundle state) {
+        setSupportActionBar(mToolbar);
+        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         getPresenter().loadRssFragments();
     }
 
@@ -60,6 +67,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         List<String> titles = new ArrayList<>();
         for (Feed feed :
                 new FeedParser().parseFeeds(this)) {
+            fragmentList.add(RssFragment.newInstance(feed));
             titles.add(feed.getTitle());
         }
 

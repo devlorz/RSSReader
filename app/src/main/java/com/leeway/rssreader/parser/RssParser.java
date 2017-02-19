@@ -43,7 +43,7 @@ public class RssParser extends DefaultHandler {
     public void startElement(String uri, String localName, String qName
             , Attributes attributes) throws SAXException {
         elementOn = true;
-        if (localName.equals(items)) {
+        if (localName.equals("item")) {
             rssItem = new RssItem();
         } else if (localName.equalsIgnoreCase("title") && !qName.contains("media")) {
             parsingTitle = true;

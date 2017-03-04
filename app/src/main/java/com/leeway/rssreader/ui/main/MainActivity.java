@@ -10,6 +10,7 @@ import com.leeway.rssreader.R;
 import com.leeway.rssreader.base.BaseActivity;
 import com.leeway.rssreader.chrome.ChromeTabsWrapper;
 import com.leeway.rssreader.model.Feed;
+import com.leeway.rssreader.model.RError;
 import com.leeway.rssreader.model.RssItem;
 import com.leeway.rssreader.ui.rss.RssFragment;
 import com.leeway.rssreader.ui.rss.RssFragmentAdapter;
@@ -93,4 +94,8 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         mChromeTabsWrapper.openCustomtab(rssItem.getUrl());
     }
 
+    @Override
+    public void onFail(RError error) {
+
+    }
 }

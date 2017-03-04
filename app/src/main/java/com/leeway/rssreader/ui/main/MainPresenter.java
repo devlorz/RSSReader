@@ -11,7 +11,6 @@ import java.util.Random;
 public class MainPresenter extends BasePresenter<MainContract.View>
         implements MainContract.Presenter {
 
-
     @Override
     public void loadRssFragments() {
         getView().onLoadRssFragments();

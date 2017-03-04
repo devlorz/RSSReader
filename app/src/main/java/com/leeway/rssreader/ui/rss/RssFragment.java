@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.leeway.rssreader.R;
 import com.leeway.rssreader.base.BaseFragment;
 import com.leeway.rssreader.model.Feed;
+import com.leeway.rssreader.model.RError;
 import com.leeway.rssreader.model.RssItem;
 
 import java.util.List;
@@ -127,6 +128,11 @@ public class RssFragment extends BaseFragment<RssPresenter> implements RssContra
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onFail(RError error) {
+
     }
 
     public interface OnItemSelectListener {

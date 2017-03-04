@@ -3,6 +3,7 @@ package com.leeway.rssreader.ui.rss;
 import com.leeway.rssreader.app.SessionData;
 import com.leeway.rssreader.base.BasePresenter;
 import com.leeway.rssreader.model.Feed;
+import com.leeway.rssreader.model.RError;
 import com.leeway.rssreader.model.RssItem;
 import com.leeway.rssreader.parser.RssReader;
 import com.leeway.rssreader.util.Logger;
@@ -58,7 +59,11 @@ public class RssPresenter extends BasePresenter<RssContract.View> implements Rss
     public void onFail(String rssUrl) {
         if (isAttached()) {
             getView().hideLoading();
-            //
+            getView().onFail(new RError("Failed to fetch RSS"));
         }
+    }
+
+    public SessionData getSessionData() {
+        return mSessionData;
     }
 }

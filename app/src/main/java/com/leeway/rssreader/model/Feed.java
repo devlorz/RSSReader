@@ -30,4 +30,8 @@ public class Feed implements Serializable {
     public String getEncoding() {
         return encoding;
     }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }

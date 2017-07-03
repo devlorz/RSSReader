@@ -96,6 +96,5 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     @Override
     public void onFail(RError error) {
-
     }
 }

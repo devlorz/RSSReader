@@ -14,9 +14,15 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 
+import static com.leeway.rssreader.model.RError.ERROR_FETCH;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
+import static org.hamcrest.Matchers.is;
 
 /**
  * Created by Lee Lorz on 3/5/2017.
@@ -86,8 +92,9 @@ public class RssPresenterTest {
         verify(mView).hideLoading();
         verify(mView).onFail(mCaptorError.capture());
 
-        assertTrue(mCaptorError.getValue()
-                .getMessage()
-                .equals(RError.ERROR_FETCH));
+//        assertTrue(mCaptorError.getValue()
+//                .getMessage()
+//                .equals(ERROR_FETCH));
+        assertThat(mCaptorError.getValue().getMessage(), is(RError.ERROR_FETCH));
     }
 }

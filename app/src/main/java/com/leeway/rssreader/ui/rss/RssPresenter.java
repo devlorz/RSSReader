@@ -30,7 +30,7 @@ public class RssPresenter extends BasePresenter<RssContract.View> implements Rss
     @Override
     public void loadRssItems(Feed feed, boolean fromCache) {
         if (mSessionData.hasUrl(feed.getUrl()) && fromCache) {
-            Logger.logv("Read from cache: " + feed.getUrl());
+//            Logger.logv("Read from cache: " + feed.getUrl());
             getView().onRssItemLoaded(mSessionData.getContent(feed.getUrl()));
         } else {
             RssReader request = new RssReader(this, feed.getUrl());
@@ -59,7 +59,7 @@ public class RssPresenter extends BasePresenter<RssContract.View> implements Rss
     public void onFail(String rssUrl) {
         if (isAttached()) {
             getView().hideLoading();
-            getView().onFail(new RError("Failed to fetch RSS"));
+            getView().onFail(new RError("Failed to fetch RSS!"));
         }
     }
 

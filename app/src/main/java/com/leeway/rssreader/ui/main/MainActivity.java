@@ -22,7 +22,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<MainContract.Presenter> implements
         MainContract.View , RssFragment.OnItemSelectListener{
@@ -59,22 +58,25 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     }
 
     @Override
-    public void onLoadRssFragments() {
-        setUpViewPager();
+    public void onLoadRssFragments(Feed[] feeds) {
+        setUpViewPager(feeds);
     }
 
-    private void setUpViewPager() {
+    private void setUpViewPager(Feed[] feeds) {
         List<RssFragment> fragmentList = new ArrayList<>();
         List<String> titles = new ArrayList<>();
         for (Feed feed :
-                new FeedParser().parseFeeds(this)) {
+//                new FeedParser().parseFeeds(this)) {
+                feeds) {
             fragmentList.add(RssFragment.newInstance(feed));
             titles.add(feed.getTitle());
         }
 
         RssFragmentAdapter adapter = new RssFragmentAdapter(getSupportFragmentManager()
                 , fragmentList, titles);
+        adapter.notifyDataSetChanged();
         mViewPager.setAdapter(adapter);
+//        mViewPager.notify();
     }
 
     @Override

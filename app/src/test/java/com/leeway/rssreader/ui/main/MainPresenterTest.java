@@ -1,10 +1,13 @@
 package com.leeway.rssreader.ui.main;
 
+import com.leeway.rssreader.model.Feed;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -27,7 +30,8 @@ public class MainPresenterTest {
 
     @Test
     public void testLoadRssItems() {
+        Feed feeds[] = {new Feed()};
         mMainPresenter.loadRssFragments();
-        verify(mView).onLoadRssFragments();
+        verify(mView).onLoadRssFragments(feeds);
     }
 }

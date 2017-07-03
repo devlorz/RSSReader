@@ -2,6 +2,7 @@ package com.leeway.rssreader.ui.main;
 
 import com.leeway.rssreader.base.BaseMvpPresenter;
 import com.leeway.rssreader.base.BaseView;
+import com.leeway.rssreader.model.Feed;
 
 /**
  * Created by Lee Lorz on 2/13/2017.
@@ -16,6 +17,6 @@ public interface MainContract {
 
     // Action callbacks. Activity/Fragment will implement
     interface View extends BaseView {
-        void onLoadRssFragments();
+        void onLoadRssFragments(Feed[] feeds);
     }
 }

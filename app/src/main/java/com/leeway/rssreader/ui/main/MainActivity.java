@@ -1,10 +1,13 @@
 package com.leeway.rssreader.ui.main;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.leeway.rssreader.R;
 import com.leeway.rssreader.base.BaseActivity;
@@ -14,7 +17,6 @@ import com.leeway.rssreader.model.RError;
 import com.leeway.rssreader.model.RssItem;
 import com.leeway.rssreader.ui.rss.RssFragment;
 import com.leeway.rssreader.ui.rss.RssFragmentAdapter;
-import com.leeway.rssreader.util.FeedParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +24,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<MainContract.Presenter> implements
-        MainContract.View , RssFragment.OnItemSelectListener{
+        MainContract.View, RssFragment.OnItemSelectListener {
 
     @BindView(R.id.viewPager)
     ViewPager mViewPager;
@@ -38,6 +41,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     @Inject
     ChromeTabsWrapper mChromeTabsWrapper;
 
+    ProgressDialog progress;
 
     @Override
     protected int getContentResource() {
@@ -60,6 +64,24 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     @Override
     public void onLoadRssFragments(Feed[] feeds) {
         setUpViewPager(feeds);
+    }
+
+    @Override
+    public void showLoading() {
+        mTabLayout.setVisibility(View.GONE);
+//        progressBar.setVisibility(View.VISIBLE);
+        progress = new ProgressDialog(this);
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.setCancelable(false);
+        progress.show();
+    }
+
+    @Override
+    public void hideLoading() {
+        progress.hide();
+//        progressBar.setVisibility(View.GONE);
+        mTabLayout.setVisibility(View.VISIBLE);
     }
 
     private void setUpViewPager(Feed[] feeds) {

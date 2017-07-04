@@ -1,5 +1,6 @@
 package com.leeway.rssreader.ui.main;
 
+import com.leeway.rssreader.base.AsyncCallbackView;
 import com.leeway.rssreader.base.BaseMvpPresenter;
 import com.leeway.rssreader.base.BaseView;
 import com.leeway.rssreader.model.Feed;
@@ -16,7 +17,7 @@ public interface MainContract {
     }
 
     // Action callbacks. Activity/Fragment will implement
-    interface View extends BaseView {
+    interface View extends BaseView, AsyncCallbackView{
         void onLoadRssFragments(Feed[] feeds);
     }
 }

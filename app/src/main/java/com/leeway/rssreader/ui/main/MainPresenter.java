@@ -24,6 +24,7 @@ public class MainPresenter extends BasePresenter<MainContract.View>
 
     @Override
     public void loadRssFragments() {
+        getView().showLoading();
         Retrofit retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -37,6 +38,7 @@ public class MainPresenter extends BasePresenter<MainContract.View>
                 .subscribe(new Consumer<Feed[]>() {
                     @Override
                     public void accept(@NonNull Feed[] feeds) throws Exception {
+                        getView().hideLoading();
                         getView().onLoadRssFragments(feeds);
                     }
                 });
